@@ -17,9 +17,16 @@ class CircleShape(pygame.sprite.Sprite):
         self.radius = radius
 
     def draw(self, screen):
+
+        verts = self.triangle()
         if (SHOW_PLAYER_HB):
-            pygame.draw.circle(screen, "red"  ,  (self.position.x,self.position.y)   ,self.radius,2)        
-        pygame.draw.polygon(screen, "white", self.triangle(),3)
+            pygame.draw.circle(screen, "red"  ,  (self.position.x,self.position.y)   ,self.radius,3)      
+            pygame.draw.circle(screen,"blue" ,   (self.position.x,self.position.y)   ,10) 
+            pygame.draw.circle(screen,"green" ,   verts[0],10) 
+            pygame.draw.circle(screen,"teal" ,   verts[1],10)                         
+            pygame.draw.circle(screen,"orange" ,  verts[2],10) 
+
+        pygame.draw.polygon(screen, "white", verts,3)
 
 
     def update(self, dt):

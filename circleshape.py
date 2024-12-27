@@ -28,6 +28,11 @@ class CircleShape(pygame.sprite.Sprite):
 
         pygame.draw.polygon(screen, "white", verts,3)
 
+    def collide(self,other):
+        collision_range = self.radius + other.radius
+        distance_between = self.position.distance_to(other.position)
+        return distance_between <= collision_range
+
 
     def update(self, dt):
         # sub-classes must override

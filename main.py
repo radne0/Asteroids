@@ -27,6 +27,7 @@ def main():
                 return
         screen.fill( "black"  )
         p.draw(screen)
+        p.update(dt)
         pygame.display.flip()
         dt = game_clock.tick(60)/1000                           # time between frame updates.  upper limit capped at 60 FPS  (no faster than ~16.7 ms between updates)
     

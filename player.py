@@ -17,7 +17,7 @@ class Player(CircleShape):
     # from boot.dev:   check for key press..  
     def update(self, dt):
         keys = pygame.key.get_pressed()
-        print(f"A: {keys[pygame.K_a]}, D: {keys[pygame.K_d]}, W: {keys[pygame.K_w]},S: {keys[pygame.K_s]}")
+        #print(f"A: {keys[pygame.K_a]}, D: {keys[pygame.K_d]}, W: {keys[pygame.K_w]},S: {keys[pygame.K_s]}")
         if keys[pygame.K_a]:
             self.rotate(-dt)
         if keys[pygame.K_d]:

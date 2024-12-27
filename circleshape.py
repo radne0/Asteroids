@@ -1,6 +1,8 @@
 import pygame
 
 # Base class for game objects
+# game objects represents as circle with a center position, radius and velocity (vector in the direction of movement.)
+# from boot.dev
 class CircleShape(pygame.sprite.Sprite):
     def __init__(self, x, y, radius):
         # we will be using this later
@@ -14,8 +16,7 @@ class CircleShape(pygame.sprite.Sprite):
         self.radius = radius
 
     def draw(self, screen):
-        # sub-classes must override
-        pass
+        pygame.draw.polygon(screen, "white", self.triangle(),2)
 
     def update(self, dt):
         # sub-classes must override

@@ -11,19 +11,21 @@ class Player(CircleShape):
         self.rotation += PLAYER_TURN_SPEED*dt
 
     def move(self,dt ):
-        forward = pygame.Vector2(0,1).rotate(self.rotation)
-        self.position += PLAYER_MOVE_SPEED*dt*forward  
+        forward = pygame.Vector2(0,1).rotate(self.rotation)               # unit vector in movement direction
+        self.position += PLAYER_SPEED*dt*forward                          # scale based on player speed and time since last update.
 
     # from boot.dev:   check for key press..  
     def update(self, dt):
         keys = pygame.key.get_pressed()
-        print(f"A: {keys[pygame.K_a]}, D: {keys[pygame.K_d]}, W: {keys[pygame.K_w]}")
+        print(f"A: {keys[pygame.K_a]}, D: {keys[pygame.K_d]}, W: {keys[pygame.K_w]},S: {keys[pygame.K_s]}")
         if keys[pygame.K_a]:
             self.rotate(-dt)
         if keys[pygame.K_d]:
             self.rotate(dt)
         if keys[pygame.K_w]:   
             self.move(dt)
+        if keys[pygame.K_s]:   
+            self.move(-dt)            
 
     # initial code from boot.dev
     # rewritten slightly

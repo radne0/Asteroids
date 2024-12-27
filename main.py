@@ -29,11 +29,11 @@ def main():
                 return
         screen.fill( "black"  )
         
-        for u in updatable:
-            u.update(dt)
+        for obj in updatable:
+            obj.update(dt)
 
-        for d in drawable:
-            d.draw(screen)
+        for obj in drawable:
+            obj.draw(screen)
         
         pygame.display.flip()
         dt = game_clock.tick(60)/1000                           # time between frame updates.  upper limit capped at 60 FPS  (no faster than ~16.7 ms between updates)

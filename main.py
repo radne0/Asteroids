@@ -1,5 +1,4 @@
 import pygame
-import random
 from constants import * 
 from time import sleep
 from player import Player
@@ -19,15 +18,23 @@ def main():
     dt = 0
 
     #Game Loop.
-    random.seed(1)
+    updatable = pygame.sprite.Group()
+    drawable = pygame.sprite.Group()
+    Player.containers = (updatable,drawable)
+
     p = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT /2)
     while(True):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
         screen.fill( "black"  )
-        p.draw(screen)
-        p.update(dt)
+        
+        for u in updatable:
+            u.update(dt)
+
+        for d in drawable:
+            d.draw(screen)
+        
         pygame.display.flip()
         dt = game_clock.tick(60)/1000                           # time between frame updates.  upper limit capped at 60 FPS  (no faster than ~16.7 ms between updates)
     

@@ -1,6 +1,8 @@
 import pygame
 from constants import * 
 from time import sleep
+from player import Player
+
 
 def main():
     print("Starting asteroids!")
@@ -17,11 +19,13 @@ def main():
 
 
     #Game Loop.
+    p = Player(SCREEN_HEIGHT / 2, SCREEN_HEIGHT /2)
     while(True):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
         screen.fill( "black"  )
+        p.draw(screen)
         pygame.display.flip()
         dt = game_clock.tick(60)/1000                           # time between frame updates.  upper limit capped at 60 FPS  (no faster than ~16.7 ms between updates)
     

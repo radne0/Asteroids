@@ -1,4 +1,5 @@
 import pygame
+import random
 from constants import * 
 from time import sleep
 from player import Player
@@ -17,9 +18,9 @@ def main():
     game_clock = pygame.time.Clock()
     dt = 0
 
-
     #Game Loop.
-    p = Player(SCREEN_HEIGHT / 2, SCREEN_HEIGHT /2)
+    random.seed(1)
+    p = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT /2)
     while(True):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -29,7 +30,6 @@ def main():
         pygame.display.flip()
         dt = game_clock.tick(60)/1000                           # time between frame updates.  upper limit capped at 60 FPS  (no faster than ~16.7 ms between updates)
     
-
 
 # only excute when this file is ran directly, not imported.
 if __name__ == "__main__":

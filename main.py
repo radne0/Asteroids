@@ -13,10 +13,15 @@ def main():
     print(f"Screen width: {SCREEN_WIDTH}")
     print(f"Screen height: {SCREEN_HEIGHT}")
 
+
     # initialize pygame.
     pygame.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
-    
+    background = pygame.image.load('back.jpg').convert()     # background
+    screen.blit(background,(0,0))    
+
+
+
     # Framerate handling..
     game_clock = pygame.time.Clock()
     dt = 0
@@ -38,7 +43,7 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
-        screen.fill( "black"  )
+        screen.blit(background,(0,0))    
         
         for obj in updatable:
             obj.update(dt)

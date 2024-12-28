@@ -19,8 +19,7 @@ def main():
     screen = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
     background = pygame.image.load('back.jpg').convert()     # background
     screen.blit(background,(0,0))    
-
-
+    my_font = pygame.font.SysFont('Comic Sans MS', 30)
 
     # Framerate handling..
     game_clock = pygame.time.Clock()
@@ -43,7 +42,9 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
+        ts = my_font.render(f"Score: {p.score}",True,(255,255,255)  )
         screen.blit(background,(0,0))    
+        screen.blit(ts,(0,0))
         
         for obj in updatable:
             obj.update(dt)
@@ -54,9 +55,10 @@ def main():
                 #sys.exit()
             for bullet in bullets:
                 if bullet.collide(asteroid):
-                    print("hit!")
+                    p.addpoints(asteroid.value)
                     bullet.kill()
                     asteroid.split() 
+                    print(f"Score: {p.score}")
 
 
         for obj in drawable:

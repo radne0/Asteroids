@@ -51,7 +51,7 @@ def main():
                 if bullet.collide(asteroid):
                     print("hit!")
                     bullet.kill()
-                    asteroid.kill()
+                    asteroid.split() 
 
 
         for obj in drawable:

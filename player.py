@@ -23,8 +23,10 @@ class Player(CircleShape):
 
     # from boot.dev:   check for key press..  
     def update(self, dt):
-        keys = pygame.key.get_pressed()
-        #print(f"A: {keys[pygame.K_a]}, D: {keys[pygame.K_d]}, W: {keys[pygame.K_w]},S: {keys[pygame.K_s]}")
+        if (self.timer > 0): self.timer -= dt
+        
+        # controls...
+        keys = pygame.key.get_pressed()        
         if keys[pygame.K_a]:
             self.rotate(-dt)
         if keys[pygame.K_d]:
@@ -35,16 +37,17 @@ class Player(CircleShape):
             self.move(-dt)     
         if keys[pygame.K_SPACE]:
             self.shoot(dt)       
+        
 
     def shoot(self,dt):
-        if (self.timer > 0):
-            self.timer -= dt
-        else:
+        if (self.timer <= 0):
             self.timer = PLAYER_SHOT_COOLDOWN
             bullet = Shot(self.position.x,self.position.y,SHOT_RADIUS)
             direction = pygame.Vector2(0,1).rotate(self.rotation)
             bullet.position = bullet.position + (self.radius+10)*direction
             bullet.velocity = direction*PLAYER_SHOOT_SPEED
+        else:
+            pass
     
 
     # initial code from boot.dev
